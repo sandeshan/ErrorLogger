@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "Graph View";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ErrorLogs - GraphView</title>
+
+    <script>
+    var barChartData = {
+        labels: [@Html.Raw(ViewBag.labelList)],
+        datasets: [
+            {
+                label: "Number of Error Logs",
+                backgroundColor: [@Html.Raw(ViewBag.colorList)],
+                borderWidth: 1,
+                data: [@Html.Raw(ViewBag.dataList)],
+            }
+        ]
+    };
+        var barChart2Data = {
+            labels: [@Html.Raw(ViewBag.labelList2)],
+            datasets: [
+                {
+                    label: "Number of Error Logs",
+                    backgroundColor: [@Html.Raw(ViewBag.colorList2)],
+                    borderWidth: 1,
+                    data: [@Html.Raw(ViewBag.dataList2)],
+                }
+            ]
+        };
+    window.onload = function () {
+        var ctx = document.getElementById("BarGraph").getContext("2d");
+        window.myBar = new Chart(ctx, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                responsive: true,
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Error Logs Data by Application - Total Count: @Html.Raw(ViewBag.totalCount)'
+                },
+                scales: {
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            beginAtZero: true,
+                            steps: 10,
+                            stepValue: 2,
+                        }
+                    }]
+                },
+            }
+        });
+
+        var ctx2 = document.getElementById("BarGraph2").getContext("2d");
+        window.myBar = new Chart(ctx2, {
+            type: 'bar',
+            data: barChart2Data,
+            options: {
+                responsive: true,
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Error Logs Data by Month - Total Count: @Html.Raw(ViewBag.totalCount)'
+                },
+                scales: {
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            beginAtZero: true,
+                            steps: 10,
+                            stepValue: 2,
+                        }
+                    }]
+                },
+            }
+        });
+    };
+    </script>
+
+</head>
+<body>
+    <div class="container">
+        <h3>Your Available Applications:</h3>
+        <ul>
+            @foreach (ErrorLoggerModel.Application app in ViewBag.Apps)
+            {
+                <li>@Html.DisplayFor(a => app.appName)</li>
+            }
+        </ul>
+    </div>
+    <div class="container">
+        <canvas id="BarGraph"></canvas>
+    </div>
+    <br /><br />
+    <div class="container">
+        <canvas id="BarGraph2"></canvas>
+    </div>
+</body>
+</html>

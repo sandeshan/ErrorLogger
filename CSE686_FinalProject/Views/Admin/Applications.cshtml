@@ -1,0 +1,97 @@
+﻿@model ICollection<ErrorLoggerModel.Application>
+
+@{
+    ViewBag.Title = "Applications";
+}
+
+<h2>@ViewBag.Message</h2>
+
+<div class="container">
+    <h3>Number of Applications: @Model.Count()</h3>
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            Search/Filter by App Name: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+            <input type="submit" value="Reset" />
+        </p>
+    }
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink(@Html.DisplayNameFor(m => Model.FirstOrDefault().appId).ToString(), "Applications", new { sortOrder = ViewBag.AppIDSortParam })
+                </th>
+                <th>
+                    @Html.ActionLink(@Html.DisplayNameFor(m => Model.FirstOrDefault().appName).ToString(), "Applications", new { sortOrder = ViewBag.AppNameSortParam })
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => Model.FirstOrDefault().debugLevel).ToString()
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => Model.FirstOrDefault().appStatus).ToString()
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (ErrorLoggerModel.Application app in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => app.appId)
+                    </td>
+                    <td>
+                        @Html.ActionLink(app.appName, "ViewApp", new { id = app.appId })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => app.debugLevel.debugDescription)
+                    </td>
+                    @if (@Html.DisplayFor(m => app.appStatus).ToString() == "enabled")
+                    {
+                        <td>
+                            <button type="button" class="btn btn-success">Enabled</button>
+                        </td>
+                    }
+
+                    else 
+                    {
+                        <td>
+                            <button type="button" class="btn btn-danger">Disabled</button>
+                        </td>
+                    }
+                    <td>
+                        @using (Html.BeginForm("Applications", "Admin", FormMethod.Post))
+                        {
+                            <p>
+                                @Html.HiddenFor(m => app.appId)
+                                @Html.HiddenFor(m => app.appName)
+                                @Html.DropDownList("EnabledList", "--Select--")
+                            </p>
+                            <p>
+                                <button type="submit">Submit</button>
+                            </p>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+<div class="container">
+    <h2>Add New Application:</h2>
+    @Html.ActionLink("Add New Application", "AddApp")
+</div>
+
+<div>
+    <br /><br />
+    @Html.ActionLink("Back to Admin Home", "Index")
+</div>
+

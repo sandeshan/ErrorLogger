@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<div class="jumbotron">
+    <h1>Error Logger</h1>
+    <h2>CSE 686 - Final Project</h2>
+    <p class="lead">The Error Logger system is aimed at software engineers and it will allow them to log error messages in one central place. 
+    The long term goal of the system is to not only log messages, but to also provide analysis of the collected data.</p>
+</div>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h2 class="display-3">System Use</h2>
+        <ul class="list-unstyled">
+            <li><p class="lead">
+    When a developer want to use the error logger, they would reference the library (DLL) in their (host) application.
+    <br />The library would be configured at the application start and it would be used to handle errors in the host application.</p>
+            </li>
+            <li><p>When the host application needs to log an error, it would make a call into the library.</p>
+            <ul>
+                <li><p>Library would then send the error message into the REST service.</p></li>
+                <li><p>Service would be responsible for logging the error into the database.</p></li>
+                <li><p>Finally, when the developer is interested in reviewing logged error messages, they would log into the website and access all of the error logs that were saved in the DB.</p></li>
+            </ul>
+            </li>
+        </ul>
+</div>
+</div>
+

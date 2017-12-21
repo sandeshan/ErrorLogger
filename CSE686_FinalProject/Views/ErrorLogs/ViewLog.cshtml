@@ -1,0 +1,74 @@
+﻿@model ErrorLoggerModel.ErrorLog
+
+@{
+    ViewBag.Title = "View Error Log";
+}
+
+<h3>@ViewBag.Message</h3>
+
+
+<div class="container">
+    <h2>Error Log metadata: </h2>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.logID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.logID)
+        </dd>
+
+    </dl>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fileName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fileName)
+        </dd>
+
+    </dl>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.timeStamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.timeStamp)
+        </dd>
+
+    </dl>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Application)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Application.appName)
+        </dd>
+
+    </dl>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.logType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.logType.typeName)
+        </dd>
+
+    </dl>
+
+</div>
+
+<div class="container">
+    <p>
+        @Html.ActionLink("Edit", "EditLog", new { id = Model.logID }) |
+        @Html.ActionLink("Back to ErrorLogs Home", "Index")
+    </p>
+</div>

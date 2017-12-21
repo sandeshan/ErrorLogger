@@ -1,0 +1,115 @@
+﻿@model ICollection<ErrorLoggerModel.User>
+
+@{
+    ViewBag.Title = "All Users";
+}
+
+<h2>@ViewBag.Message</h2>
+
+<div class="container">
+    <h3>Total Number of Users: @Model.Count()</h3>
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            Search/Filter by Name: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+            <input type="submit" value="Reset" />
+        </p>
+    }
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink(@Html.DisplayNameFor(m => Model.FirstOrDefault().firstName).ToString(), "Users", new { sortOrder = ViewBag.UserFNameSortParam })
+                </th>
+                <th>
+                    @Html.ActionLink(@Html.DisplayNameFor(m => Model.FirstOrDefault().lastName).ToString(), "Users", new { sortOrder = ViewBag.UserLNameSortParam })
+                </th>
+                <th>
+                    @Html.ActionLink(@Html.DisplayNameFor(m => Model.FirstOrDefault().emailID).ToString(), "Users", new { sortOrder = ViewBag.UserMailSortParam })
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => Model.FirstOrDefault().lastLoginDate).ToString()
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => Model.FirstOrDefault().activeStatus).ToString()
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => Model.FirstOrDefault().Applications).ToString()
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => Model.FirstOrDefault().userType).ToString()
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (ErrorLoggerModel.User user in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => user.firstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => user.lastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => user.emailID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => user.lastLoginDate)
+                    </td>
+
+                    @if (@Html.DisplayFor(m => user.activeStatus).ToString() == "active")
+                    {
+                        <td>
+                            <button type="button" class="btn btn-success">Active</button>
+                        </td>
+                    }
+
+                    else
+                    {
+                        <td>
+                            <button type="button" class="btn btn-danger">Inactive</button>
+                        </td>
+                    }
+
+                    <td>
+                        @foreach (var app in user.Applications)
+                        {
+                            <p>@Html.DisplayFor(modelItem => app.appName)</p>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => user.userType.userType)
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("Users", "Admin", FormMethod.Post))
+                        {
+                            <p>
+                                @Html.HiddenFor(m => user.emailID)
+                                @Html.HiddenFor(m => user.firstName)
+                                @Html.HiddenFor(m => user.lastName)
+                                @Html.HiddenFor(m => user.userType)
+                                @Html.DropDownList("ActiveList", "--Select--")
+                            </p>
+                            <p>
+                                <button type="submit">Submit</button>
+                            </p>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+</table>
+</div>
+
+<div>
+    <br /><br />
+    @Html.ActionLink("Back to Admin Home", "Index")
+</div>

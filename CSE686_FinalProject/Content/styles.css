@@ -1,0 +1,58 @@
+/*
+*/
+
+.caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-right: 4px solid transparent;
+    border-bottom: 0 dotted;
+    border-left: 4px solid transparent;
+    content: "";
+}
+
+@media(min-width:1200px) {
+    .container {
+        max-width: none;
+    }
+}
+
+body {
+    font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
+    color: #000000;
+    background-color: #f2efe8;
+    font-size: 16px;
+}
+
+.jumbotron {
+    background-color: #c2d4d8;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
+    color: #000000;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.dropdown-menu>li>a {
+    color: #428bca;
+    font-size: 16px;
+}
+
+.col-xs-2 {
+    width: 17.666666666666664%;
+}
+
+thead {
+    background-color:#292B2C; 
+    color:white
+}
+
+.nav>li>a {
+    padding-left:0px;
+    padding-right:-5px;
+}

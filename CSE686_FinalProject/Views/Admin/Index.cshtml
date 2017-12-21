@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Administration";
+}
+
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+
+<div class="container">
+    <h2>Available Admin Options:</h2>
+    <div class="list-group">
+        <a href="@Url.Action("Applications","Admin")" class="list-group-item ">View/Add/Edit Applications</a>
+        <a href="@Url.Action("ErrorLogs","Admin")" class="list-group-item ">View All Error Logs</a>
+        <a href="@Url.Action("GraphView","Admin")" class="list-group-item ">Graphical Representation of All Error Logs</a>
+        <a href="@Url.Action("Users","Admin")" class="list-group-item ">View/Edit All Users</a>
+    </div>
+</div>
+

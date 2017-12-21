@@ -1,0 +1,87 @@
+﻿@model ErrorLoggerModel.Application
+
+@{
+    ViewBag.Title = "Details about selected Application";
+}
+
+<div>
+    <br />
+    @Html.ActionLink("Back to Applications Home", "Applications")
+</div>
+
+<h2>Application Info</h2>
+
+<table class="table">
+    <thead class="tablehead">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.appId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.appName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.debugLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.appStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ErrorLogs)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.appId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.appName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.debugLevel.debugDescription)
+            </td>
+            @if (@Html.DisplayFor(m => Model.appStatus).ToString() == "enabled")
+            {
+                <td>
+                    <button type="button" class="btn btn-success">Enabled</button>
+                </td>
+            }
+            else
+            {
+                <td>
+                    <button type="button" class="btn btn-danger">Disabled</button>
+                </td>
+            }
+            <td>
+                @foreach (var user in Model.Users)
+                {
+                    @Html.DisplayFor(modelItem => user.firstName)<span></span>
+                    @Html.DisplayFor(modelItem => user.lastName)
+                    <p></p>
+                }
+            </td>
+            <td>
+                @foreach (var errorLog in Model.ErrorLogs)
+                {
+                    @Html.DisplayFor(modelItem => errorLog.fileName)
+                    <p></p>
+                }
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="container">
+    <p>
+        @Html.ActionLink("Edit this Application", "EditApp", new { id = Model.appId }) |
+        @Html.ActionLink("Delete this Application", "DeleteApp", new { id = Model.appId }, 
+       new { onclick = "return confirm('Are sure wants to delete?');" }) |
+        @Html.ActionLink("Back to Applications Home", "Applications")
+    </p>
+</div>

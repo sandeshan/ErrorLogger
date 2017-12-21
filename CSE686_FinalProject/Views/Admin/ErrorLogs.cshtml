@@ -1,0 +1,79 @@
+﻿@model PagedList.IPagedList<ErrorLoggerModel.ErrorLog>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@*@model ICollection<ErrorLoggerModel.ErrorLog>*@
+
+@{
+    ViewBag.Title = "Error Logs Home";
+}
+
+<h2>@ViewBag.Message</h2>
+
+<div class="container">
+    <h3>Total Number of log files: @ViewBag.TotalCount</h3>
+
+    @using (Html.BeginForm("ErrorLogs", "Admin", FormMethod.Post))
+    {
+        <p>
+            Filter by Source Application: 
+            @Html.DropDownList("appID", (SelectList)ViewBag.Apps)
+            <button type="submit">Submit</button>
+        </p>
+    }
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink(@Html.DisplayNameFor(m => Model.FirstOrDefault().logID).ToString(), "ErrorLogs", new { sortOrder = ViewBag.LogIDSortParam })
+                </th>
+                <th>
+                    @Html.ActionLink(@Html.DisplayNameFor(m => Model.FirstOrDefault().fileName).ToString(), "ErrorLogs", new { sortOrder = ViewBag.LogNameSortParam })
+                </th>
+                <th>
+                    @Html.ActionLink(@Html.DisplayNameFor(m => Model.FirstOrDefault().logType).ToString(), "ErrorLogs", new { sortOrder = ViewBag.LogTypeSortParam })
+                </th>
+                <th>
+                    @Html.ActionLink(@Html.DisplayNameFor(m => Model.FirstOrDefault().timeStamp).ToString(), "ErrorLogs", new { sortOrder = ViewBag.LogTimeSortParam })
+                </th>
+                <th>
+                    @Html.ActionLink(@Html.DisplayNameFor(m => Model.FirstOrDefault().Application).ToString(), "ErrorLogs", new { sortOrder = ViewBag.LogAppSortParam })
+                </th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            @foreach (var logFile in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => logFile.logID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => logFile.fileName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => logFile.logType.typeName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => logFile.timeStamp)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => logFile.Application.appName)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("ErrorLogs",  new { page, sortOrder = ViewBag.CurrentSort}))
+
+<div>
+    <br />
+    @Html.ActionLink("Back to Admin Home", "Index")
+</div>
+
