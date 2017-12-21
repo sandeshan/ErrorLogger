@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSE686_FinalProject", "CSE686_FinalProject\CSE686_FinalProject.csproj", "{B512CB39-320C-4ADD-A45D-BA7493C2D572}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorLoggerModel", "ErrorLoggerModel\ErrorLoggerModel.csproj", "{724E976E-6B01-4323-B716-43B105CBF7CB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadersAndLogic", "LoadersAndLogic\LoadersAndLogic.csproj", "{AE073895-089D-4681-A792-2B031B37D8FC}"
@@ -19,16 +17,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerTest", "LoggerTest\Lo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleLogger", "SampleLogger\SampleLogger.csproj", "{45008F2E-7C95-488B-BECB-20E94D1FF821}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorLogger_Web", "ErrorLogger_Web\ErrorLogger_Web.csproj", "{B512CB39-320C-4ADD-A45D-BA7493C2D572}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B512CB39-320C-4ADD-A45D-BA7493C2D572}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B512CB39-320C-4ADD-A45D-BA7493C2D572}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B512CB39-320C-4ADD-A45D-BA7493C2D572}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B512CB39-320C-4ADD-A45D-BA7493C2D572}.Release|Any CPU.Build.0 = Release|Any CPU
 		{724E976E-6B01-4323-B716-43B105CBF7CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{724E976E-6B01-4323-B716-43B105CBF7CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{724E976E-6B01-4323-B716-43B105CBF7CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,8 +53,15 @@ Global
 		{45008F2E-7C95-488B-BECB-20E94D1FF821}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45008F2E-7C95-488B-BECB-20E94D1FF821}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45008F2E-7C95-488B-BECB-20E94D1FF821}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B512CB39-320C-4ADD-A45D-BA7493C2D572}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B512CB39-320C-4ADD-A45D-BA7493C2D572}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B512CB39-320C-4ADD-A45D-BA7493C2D572}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B512CB39-320C-4ADD-A45D-BA7493C2D572}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {20B513C6-9B65-4FD6-AFD8-743C944F1E5D}
 	EndGlobalSection
 EndGlobal
